@@ -1,10 +1,9 @@
 package main
 
 import (
-	// "github.com/streadway/amqp"
-	// "log"
-	// "rabbit"
+	// "gitee.com/martind/golcud"
+	"github.com/Martinsuper/golcud"
 )
 func main() {
-	SendMessage("hello world! today")
+	golcud.SendMessage("hello world! today")
 }
