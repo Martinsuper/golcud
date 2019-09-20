@@ -6,5 +6,5 @@ import (
 )
 func main() {
 	// rabbit.SendMessage("hello world! today")
-	rabbit.Receiver()
+	rabbit.ReceiveMessage()
 }
