@@ -1,10 +1,12 @@
 package main
 
 import (
-	"gitee.com/martind/golcud/rabbit"
-	// "github.com/Martinsuper/golcud/rabbit"
+	"golcud/rabbit"
+	"golcud/crawler/getSoft"
+	"fmt"
 )
 func main() {
+	link := getSoft.GetGoLink()
+	fmt.Println(link)
 	// rabbit.SendMessage("hello world! today")
-	rabbit.ReceiveMessage()
 }
