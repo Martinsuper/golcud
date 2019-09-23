@@ -28,5 +28,6 @@ func main() {
 	if errs != nil {
 	   fmt.Println(errs.Error())
 	}
+	fmt.Println(string(jsons)) //byte[]转换成string 输出
 	rabbit.SendMessage(string(jsons),"email.task.queue")
 }
