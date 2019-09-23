@@ -5,7 +5,7 @@ import (
 	"github.com/streadway/amqp"
 )
 
-func SendMessage(msg string) {
+func SendMessage(msg, queueName string) {
 	conn, err := amqp.Dial("amqp://duan:dly3230@bd.martind.cn:5672/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
@@ -14,7 +14,7 @@ func SendMessage(msg string) {
 	defer ch.Close()
 
 	q, err := ch.QueueDeclare(
-		"softwareUpdate", // name
+		queueName, // name
 		false,   // durable
 		false,   // delete when unused
 		false,   // exclusive

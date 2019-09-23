@@ -2,11 +2,31 @@ package main
 
 import (
 	"golcud/rabbit"
-	"golcud/crawler/getSoft"
+	// "golcud/crawler/getSoft"
 	"fmt"
+	"encoding/json"
+	"flag"
 )
+type message struct {
+	Title  string `json:"title"`
+	Content   string  `json:"content"`
+ }
+
 func main() {
-	link := getSoft.GetGoLink()
-	fmt.Println(link)
-	// rabbit.SendMessage("hello world! today")
+	var title string 
+	var content string
+	flag.StringVar(&title, "t","title","邮件title")
+	flag.StringVar(&content, "c","content","邮件正文")
+	flag.Parse()
+
+	//转换成JSON字符串
+	myMessage := message{
+		Title: title,
+		Content: content,
+	}
+	jsons, errs := json.Marshal(myMessage) //转换成JSON返回的是byte[]
+	if errs != nil {
+	   fmt.Println(errs.Error())
+	}
+	rabbit.SendMessage(string(jsons),"email.task.queue")
 }
